@@ -15,7 +15,7 @@ readme = "README.md"
 license = {text = "MIT"}
 
 [project.urls]
-homepage = "https://github.com/AD-SDL/python_template_module"
+homepage = "https://github.com/pranavs1997/arduino_module" 
 
 #####################
 # Development Tools #

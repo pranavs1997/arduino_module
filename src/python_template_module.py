@@ -1,5 +1,5 @@
 """
-REST-based node that interfaces with WEI and provides a simple Sleep(t) function
+REST-based node that interfaces with WEI and provides an Arduino interface
 """
 
 from pathlib import Path

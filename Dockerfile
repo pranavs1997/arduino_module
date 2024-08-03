@@ -1,7 +1,7 @@
 FROM ghcr.io/ad-sdl/wei
 
-LABEL org.opencontainers.image.source=https://github.com/AD-SDL/python_template_module
-LABEL org.opencontainers.image.description="An example module that implements a basic sleep(t) function"
+LABEL org.opencontainers.image.source=https://github.com/pranavs1997/arduino_module
+LABEL org.opencontainers.image.description="A module that allows you to flash Arduino UNO."
 LABEL org.opencontainers.image.licenses=MIT
 
 #########################################

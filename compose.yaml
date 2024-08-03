@@ -1,31 +1,33 @@
-name: python_template_module
+name: arduino_module
 services:
-  python_template_module:
-    container_name: python_template_module
+  arduino_module:
+    container_name: arduino_module
     image: ${IMAGE}
     build:
       context: .
+      dockerfile: Dockerfile
       tags:
         - ${IMAGE}:latest
         - ${IMAGE}:dev
+    command: python -m arduino_rest_node --port 2000
+    privileged: true
+    env_file: .env
     volumes:
-      - ./src:/home/app/python_template_module/src
-      - ./tests:/home/app/python_template_module/tests
-    command: python -m python_template_module --port 2000
+      - ${DEVICE}:/dev/ttyACM0
     ports:
       - 2000:2000
-#####################
-# WEI Core Services #
-#####################
+
+  #####################
+  # WEI Core Services #
+  #####################
   wei_server:
     image: ghcr.io/ad-sdl/wei
     container_name: wei_server
     ports:
       - 8000:8000
+    env_file: .env
     environment:
       - PYTHONUNBUFFERED=1 # Fix weird bug with empty logging
-      - USER_ID=${USER_ID:-1000}
-      - GROUP_ID=${GROUP_ID:-1000}
     volumes:
       - ${WORKCELLS_DIR}:/workcell_defs
     command: python3 -m wei.server --workcell /workcell_defs/${WORKCELL_FILENAME}
@@ -37,10 +39,9 @@ services:
     container_name: wei_engine
     volumes:
       - ${WORKCELLS_DIR}:/workcell_defs
+    env_file: .env
     environment:
-      - PYTHONUNBUFFERED=1 # Fix weird bug with empty logging
-      - USER_ID=${USER_ID:-1000}
-      - GROUP_ID=${GROUP_ID:-1000}
+     - PYTHONUNBUFFERED=1 # Fix weird bug with empty logging
     command: python3 -m wei.engine --workcell /workcell_defs/${WORKCELL_FILENAME}
     depends_on:
       - wei_redis
