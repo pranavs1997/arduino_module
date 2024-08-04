@@ -1,0 +1,15 @@
+name: Test Arduino Module
+metadata:
+  author: Pranav Sinha
+  info: Tests the functionality of the Arduino Module
+  version: 0.1
+
+modules:
+  - name: arduino
+
+flowdef:
+  - name: Flash Arduino
+    module: arduino
+    action: flash
+    args:
+      file_name: "src.ino"
