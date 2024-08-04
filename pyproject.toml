@@ -1,6 +1,6 @@
 [project]
 name = "arduino_module"
-ersion = "1.5.0"
+version = "1.5.0"
 description = "A module that allows you to flash Arduino UNO."
 authors = [{name = "Pranav Sinha", email="pranavsinha@oakland.edu"}]
 dependencies = [
