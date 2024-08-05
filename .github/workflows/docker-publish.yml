@@ -1,0 +1,17 @@
+name: Docker Build and Publish
+
+on:
+  push:
+    
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build and push the image
+        run: |
+         docker login --username pranavs1997 --password ${{ secrets.GH_PAT }} ghcr.io
+         docker build . -t ghcr.io/pranavs1997/arduino_module:latest
+         docker push ghcr.io/pranavs1997/arduino_module:latest
