@@ -11,5 +11,5 @@ flowdef:
   - name: Flash Arduino
     module: arduino
     action: flash
-    args:
-      file_name: "src.ino"
+    # args:
+    #   file_name: "src.ino"

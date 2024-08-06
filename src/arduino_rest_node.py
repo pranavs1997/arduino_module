@@ -37,28 +37,18 @@ def flash(
 ) -> StepResponse:
     """Function to flash arduino"""
     sketch_name = file_name
-    subprocess.run(["arduino-cli compile --fqbn arduino:avr:uno src"], check=True)
-    subprocess.run(["arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno src"], check=True)
-    sketch_path = Path("~/.wei/temp").expanduser() / sketch_name
-    sketch_path.parent.mkdir(parents=True, exist_ok=True)
+    # sketch_path = Path("~/.wei/temp").expanduser() / sketch_name
+    # sketch_path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        serialInst = serial.Serial()
-        serialInst.baudrate = 9600
-        serialInst.port = state.arduino_address
-        serialInst.open()
+        subprocess.run(["arduino-cli compile --fqbn arduino:avr:uno src"], check=True)
+        subprocess.run(["arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno src"], check=True)
 
-        while True:
-            command = input("Arduino Command: ")
-            serialInst.write(command.encode('utf-8'))
-
-            if command == 'exit':
-                exit()
     except Exception:
         print("Arduino unavailable, returning empty image")
 
     return StepFileResponse(
         action_response=StepStatus.SUCCEEDED,
-        path=sketch_path,
+        path="",
         action_log="",
     )
 
