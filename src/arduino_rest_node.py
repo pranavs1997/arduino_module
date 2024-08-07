@@ -33,15 +33,17 @@ rest_module.arg_parser.add_argument(
 def flash(
     state: State,
     action: ActionRequest,
-    file_name: Annotated[str, "Name of the file to flash"] = "src.ino",
+    # file_name: Annotated[str, "Name of the file to flash"] = "src.ino",
 ) -> StepResponse:
     """Function to flash arduino"""
-    sketch_name = file_name
+    # sketch_name = file_name
     # sketch_path = Path("~/.wei/temp").expanduser() / sketch_name
     # sketch_path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        subprocess.run(["arduino-cli compile --fqbn arduino:avr:uno src"], check=True)
-        subprocess.run(["arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno src"], check=True)
+        command1 = ['arduino-cli', 'compile', '--fqbn', 'arduino:avr:uno', 'src.ino']
+        command2 = ['arduino-cli', 'upload', '-p', '/dev/ttyACM0', '--fqbn', 'arduino:avr:uno', 'src.ino']
+        subprocess.run(command1, capture_output=True, text=True, check=True)
+        subprocess.run(command2, capture_output=True, text=True, check=True)
 
     except Exception:
         print("Arduino unavailable, returning empty image")
