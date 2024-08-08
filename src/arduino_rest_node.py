@@ -36,8 +36,8 @@ def flash(
     # file_name: Annotated[str, "Name of the file to flash"] = "src.ino",
 ) -> StepResponse:
     """Function to flash arduino"""
-    result = subprocess.run(['ls', '-lrth'], capture_output=True, text=True)
-    print('Output:', result.stdout)
+    # result = subprocess.run(['ls', '-lrth'], capture_output=True, text=True)
+    # print('Output:', result.stdout)
     # sketch_name = file_name
     # sketch_path = Path("~/.wei/temp").expanduser() / sketch_name
     # sketch_path.parent.mkdir(parents=True, exist_ok=True)
@@ -45,11 +45,15 @@ def flash(
         # subprocess.run(["ls", "-lrth"], capture_output=True, text=True, check=True)
         command1 = ['arduino-cli', 'compile', '--fqbn', 'arduino:avr:uno', 'src.ino']
         command2 = ['arduino-cli', 'upload', '-p', '/dev/ttyACM0', '--fqbn', 'arduino:avr:uno', 'src.ino']
-        subprocess.run(command1, capture_output=True, text=True, check=True)
-        subprocess.run(command2, capture_output=True, text=True, check=True)
+        result1 = subprocess.run(command1, capture_output=True, text=True, check=True)
+        result2 = subprocess.run(command2, capture_output=True, text=True, check=True)
 
     except Exception:
         print("Arduino unavailable, returning empty image")
+        print('Output1:', result1.stdout)
+        print('Error1:', result1.stderr)
+        print('Output2:', result2.stdout)
+        print('Error2:', result2.stderr)
 
     return StepFileResponse(
         action_response=StepStatus.SUCCEEDED,
