@@ -28,7 +28,7 @@ RUN mkdir -p arduino_module
 # COPY ./README.md arduino_module/README.md
 # COPY ./pyproject.toml arduino_module/pyproject.toml
 
-COPY . /arduino_module
+COPY . /arduino_module/
 
 RUN --mount=type=cache,target=/root/.cache \
     pip install ./arduino_module
