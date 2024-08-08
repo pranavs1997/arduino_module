@@ -43,8 +43,8 @@ def flash(
     # sketch_path.parent.mkdir(parents=True, exist_ok=True)
     try:
         # subprocess.run(["ls", "-lrth"], capture_output=True, text=True, check=True)
-        command1 = ['arduino-cli', 'compile', '--fqbn', 'arduino:avr:uno', 'src.ino']
-        command2 = ['arduino-cli', 'upload', '-p', '/dev/ttyACM0', '--fqbn', 'arduino:avr:uno', 'src.ino']
+        command1 = ['arduino-cli', 'compile', '--fqbn', 'arduino:avr:uno', 'arduino_module/src/src.ino']
+        command2 = ['arduino-cli', 'upload', '-p', '/dev/ttyACM0', '--fqbn', 'arduino:avr:uno', 'arduino_module/src/src.ino']
         subprocess.run(command1, capture_output=True, text=True, check=True)
         subprocess.run(command2, capture_output=True, text=True, check=True)
 
