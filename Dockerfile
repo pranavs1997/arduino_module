@@ -33,10 +33,9 @@ COPY ./pyproject.toml arduino_module/pyproject.toml
 RUN --mount=type=cache,target=/root/.cache \
     pip install ./arduino_module
 
-# WORKDIR /arduino_module/src
-
 RUN usermod -a -G video app
 
+WORKDIR /arduino_module/src
     
 # CMD ["python", "arduino_module/src/arduino_rest_node.py"]
 
