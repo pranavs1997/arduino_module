@@ -41,6 +41,7 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 
 
+
 CMD ["python", "arduino_module/src/arduino_rest_node.py"]
 
 # CMD ["python", "arduino_rest_node.py"]
