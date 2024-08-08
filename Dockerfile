@@ -8,6 +8,8 @@ LABEL org.opencontainers.image.licenses=MIT
 # Module specific logic goes below here #
 #########################################
 
+RUN usermod -a -G video app
+
 RUN apt-get update && \
 apt-get install -y curl
 
@@ -35,7 +37,7 @@ RUN --mount=type=cache,target=/root/.cache \
 
 # WORKDIR /arduino_module/src
 
-RUN usermod -a -G video app
+
 
     
 # CMD ["python", "arduino_module/src/arduino_rest_node.py"]
