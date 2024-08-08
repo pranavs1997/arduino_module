@@ -37,8 +37,8 @@ RUN usermod -a -G video app
 
 # WORKDIR /arduino_module/src
     
-# CMD ["python", "arduino_module/src/arduino_rest_node.py"]
+CMD ["python", "arduino_module/src/arduino_rest_node.py"]
 
-CMD ["python", "arduino_rest_node.py"]
+# CMD ["python", "arduino_rest_node.py"]
 
 #########################################
