@@ -24,9 +24,11 @@ RUN arduino-cli core install arduino:avr
 
 RUN mkdir -p arduino_module
 
-COPY ./src arduino_module/src/
-COPY ./README.md arduino_module/README.md
-COPY ./pyproject.toml arduino_module/pyproject.toml
+# COPY ./src arduino_module/src/
+# COPY ./README.md arduino_module/README.md
+# COPY ./pyproject.toml arduino_module/pyproject.toml
+
+COPY . /arduino_module
 
 RUN --mount=type=cache,target=/root/.cache \
     pip install ./arduino_module
