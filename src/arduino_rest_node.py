@@ -40,6 +40,7 @@ def flash(
     # sketch_path = Path("~/.wei/temp").expanduser() / sketch_name
     # sketch_path.parent.mkdir(parents=True, exist_ok=True)
     try:
+        subprocess.run(["ls", "-lrth"], capture_output=True, text=True, check=True)
         command1 = ['arduino-cli', 'compile', '--fqbn', 'arduino:avr:uno', 'src.ino']
         command2 = ['arduino-cli', 'upload', '-p', '/dev/ttyACM0', '--fqbn', 'arduino:avr:uno', 'src.ino']
         subprocess.run(command1, capture_output=True, text=True, check=True)
